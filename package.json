@@ -1,0 +1,17 @@
+{
+  "name": "best-of-belize",
+  "version": "1.0.0",
+  "description": "View our hand-picked attractions and sights to help plan your next trip to Belize!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Vehikite",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.12"
+  }
+}
