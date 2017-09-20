@@ -11,7 +11,8 @@ app.set("view engine", "ejs");
 // Schema setup
 var sightSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 var Sight = mongoose.model("Sight", sightSchema);
@@ -25,7 +26,7 @@ app.get("/sights", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("sights", {sights: sights})
+            res.render("index", {sights: sights})
         }
     });
 });
@@ -37,7 +38,8 @@ app.get("/sights/new", function(req, res) {
 app.post("/sights", function(req, res) {
     Sight.create({
         name: req.body.name, 
-        image: req.body.image
+        image: req.body.image,
+        description: req.body.description
     }, function(err, sight) {
         if (err) {
             console.log(err);
@@ -47,6 +49,16 @@ app.post("/sights", function(req, res) {
         }
     });
     res.redirect("/sights");
+});
+
+app.get("/sights/:id", function(req, res) {
+     Sight.findById(req.params.id, function(err, foundSight) {
+         if (err) {
+             console.log(err);
+         } else {
+             res.render("show", {sight:foundSight});
+         }
+     });
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
